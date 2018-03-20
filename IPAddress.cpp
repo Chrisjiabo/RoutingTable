@@ -1,4 +1,6 @@
-#include "stdafx.h"
+#include <stdio.h>
+//#include <tchar.h>
+#include <stdint.h>
 #include "IPAddress.h"
 #include <sstream>
 

@@ -1,4 +1,6 @@
-#include "stdafx.h"
+#include <stdio.h>
+//#include <tchar.h>
+#include <stdint.h>
 #include "PrefixTree.h"
 
 PrefixTree::PrefixTree()
@@ -50,10 +52,11 @@ PrefixTree::TreeNode* PrefixTree::getNodeAt(int address, int mask)
 }
 
 
-PrefixTree::TreeNode::TreeNode() {}
+PrefixTree::TreeNode::TreeNode()
+	: branched(false) {}
 
 PrefixTree::TreeNode::TreeNode(IPAddress* v)
-	: value(v) {}
+	: value(v), branched(false) {}
 
 IPAddress* PrefixTree::TreeNode::getValue() {
 	return this->value;
@@ -64,24 +67,23 @@ void PrefixTree::TreeNode::setValue(IPAddress* v) {
 }
 
 bool PrefixTree::TreeNode::isBranched() {
-	return (this->noBranch != NULL);
+	return this->branched;
 }
 
 void PrefixTree::TreeNode::setBranched() {
 	// Make this node null and build branches, unless branches already exist.
-	if (!this->noBranch) {
+	if (!branched) {
 		this->noBranch = new TreeNode(this->value);
 		this->yesBranch = new TreeNode(this->value);
 		this->value = nullptr;
+		this->branched = true;
 	}
 }
 
 PrefixTree::TreeNode* PrefixTree::TreeNode::branch(bool branch) {
 	if (branch) {
 		return this->yesBranch;
-	}
-	else {
+	} else {
 		return this->noBranch;
 	}
-	
 }

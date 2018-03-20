@@ -21,6 +21,7 @@ private:
 		IPAddress* value;
 		TreeNode* noBranch;
 		TreeNode* yesBranch;
+		bool branched;
 	};
 	TreeNode* root;
 	TreeNode* getNodeAt(int address, int mask);
