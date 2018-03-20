@@ -22,8 +22,8 @@ IPAddress::IPAddress(std::string s_address)
 std::string IPAddress::to_string() {
 	std::string str = "";
 	for (int i = 0; i < 4; i++) {
-		uint32_t bitmask = 0xFF << (8*(3 - i));
-		uint8_t field_value = (this->value & bitmask)>>(8 * (3 - i));
+		int bitmask = 0xFF << (8*(3 - i));
+		int field_value = (this->value & bitmask)>>(8 * (3 - i));
 		str += std::to_string(field_value);
 		if (i < 3) {
 			str += ".";

@@ -1,5 +1,6 @@
 #include <stdio.h>
 //#include <tchar.h>
+#include <iostream>
 #include <stdint.h>
 #include "PrefixTree.h"
 
@@ -13,7 +14,7 @@ IPAddress* PrefixTree::getValueAt(int address, int mask) {
 		return node->getValue();
 	}
 	else {
-		return NULL;
+		return nullptr;
 	}
 }
 
@@ -48,12 +49,12 @@ PrefixTree::TreeNode* PrefixTree::getNodeAt(int address, int mask)
 			return curBest;
 		}
 	}
-	return curNode;
+	return nullptr;
 }
 
 
 PrefixTree::TreeNode::TreeNode()
-	: branched(false) {}
+	: value(nullptr), branched(false) {}
 
 PrefixTree::TreeNode::TreeNode(IPAddress* v)
 	: value(v), branched(false) {}
